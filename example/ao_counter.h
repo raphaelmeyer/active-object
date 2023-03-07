@@ -1,11 +1,26 @@
 #pragma once
 
-#include "counter.h"
+#include "ascii.h"
 
-class AoCounter : public Counter {
+#include <future>
+
+class Scheduler;
+
+class AoCounter {
 public:
-  int up(int amount, Color color) override;
-  int down(int amount, Color color) override;
+  AoCounter(std::shared_ptr<Scheduler> scheduler) : scheduler_{scheduler} {}
 
-  int value() const override;
+  std::future<void> up(int amount, Color color);
+  std::future<void> down(int amount, Color color);
+
+  std::future<int> value() const;
+
+private:
+  void up_impl(int amount, Color color);
+  void down_impl(int amount, Color color);
+  int value_impl() const;
+
+  int value_{};
+
+  std::shared_ptr<Scheduler> scheduler_;
 };

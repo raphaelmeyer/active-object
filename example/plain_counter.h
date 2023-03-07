@@ -1,13 +1,13 @@
 #pragma once
 
-#include "counter.h"
+#include "ascii.h"
 
-class PlainCounter : public Counter {
+class PlainCounter {
 public:
-  int up(int amount, Color color) override;
-  int down(int amount, Color color) override;
+  void up(int amount, Color color);
+  void down(int amount, Color color);
 
-  int value() const override { return value_; }
+  int value() const { return value_; }
 
 private:
   int value_{0};

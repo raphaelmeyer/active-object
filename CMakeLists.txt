@@ -14,7 +14,11 @@ target_compile_features(active-object INTERFACE cxx_std_20)
 target_include_directories(active-object INTERFACE src)
 
 add_executable(example)
-target_sources(example PRIVATE example/main.cc)
+target_sources(example
+    PRIVATE
+        example/main.cc
+        example/counter.cc
+)
 target_link_libraries(example PRIVATE active-object)
 
 add_executable(tests)

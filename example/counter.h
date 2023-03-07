@@ -4,11 +4,8 @@
 
 class Counter {
 public:
-  int up(int amount, Color color);
-  int down(int amount, Color color);
+  virtual int up(int amount, Color color) = 0;
+  virtual int down(int amount, Color color) = 0;
 
-  int value() const { return value_; }
-
-private:
-  int value_{0};
+  virtual int value() const = 0;
 };

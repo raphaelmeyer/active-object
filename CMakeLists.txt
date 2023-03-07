@@ -17,8 +17,8 @@ add_executable(example)
 target_sources(example
     PRIVATE
         example/main.cc
-        example/counter.cc
         example/ascii.cc
+        example/plain_counter.cc
 )
 target_link_libraries(example PRIVATE active-object)
 

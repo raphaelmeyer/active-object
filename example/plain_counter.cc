@@ -1,10 +1,10 @@
-#include "counter.h"
+#include "plain_counter.h"
 
 #include <chrono>
 #include <iostream>
 #include <thread>
 
-int Counter::up(int amount, Color color) {
+int PlainCounter::up(int amount, Color color) {
   std::cout << color << "Counting ...";
   for (int i = 0; i < amount; ++i) {
     std::this_thread::sleep_for(std::chrono::milliseconds(50));
@@ -16,7 +16,7 @@ int Counter::up(int amount, Color color) {
   return value_;
 }
 
-int Counter::down(int amount, Color color) {
+int PlainCounter::down(int amount, Color color) {
   std::cout << color << "Counting ...";
   for (int i = 0; i < amount; ++i) {
     std::this_thread::sleep_for(std::chrono::milliseconds(50));

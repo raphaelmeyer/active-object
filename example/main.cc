@@ -1,11 +1,11 @@
-#include "counter.h"
+#include "plain_counter.h"
 
 #include <iostream>
 #include <thread>
 
 int main() {
 
-  Counter counter{};
+  PlainCounter counter{};
 
   std::thread worker1{[&counter] {
     counter.up(23, Color::Red);

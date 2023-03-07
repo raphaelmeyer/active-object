@@ -1,9 +1,14 @@
 #pragma once
 
-enum class Color { Red, Green, Yellow, Blue, Magenta, Cyan };
+#include "ascii.h"
 
 class Counter {
 public:
-  void upto(int to, Color color);
-  void downfrom(int from, Color color);
+  int up(int amount, Color color);
+  int down(int amount, Color color);
+
+  int value() const { return value_; }
+
+private:
+  int value_{0};
 };

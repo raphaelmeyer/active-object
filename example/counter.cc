@@ -4,50 +4,26 @@
 #include <iostream>
 #include <thread>
 
-namespace {
-
-std::ostream &operator<<(std::ostream &os, Color color) {
-  switch (color) {
-  case Color::Red:
-    os << "\033[31m";
-    break;
-  case Color::Green:
-    os << "\033[32m";
-    break;
-  case Color::Yellow:
-    os << "\033[33m";
-    break;
-  case Color::Blue:
-    os << "\033[34m";
-    break;
-  case Color::Magenta:
-    os << "\033[35m";
-    break;
-  case Color::Cyan:
-    os << "\033[36m";
-    break;
+int Counter::up(int amount, Color color) {
+  std::cout << color << "Counting ...";
+  for (int i = 0; i < amount; ++i) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    ++value_;
+    std::cout << " " << value_ << std::flush;
   }
-  return os;
+  std::cout << Color::None << "\n";
+
+  return value_;
 }
 
-auto const reset = "\033[m";
-
-} // namespace
-
-void Counter::upto(int to, Color color) {
+int Counter::down(int amount, Color color) {
   std::cout << color << "Counting ...";
-  for (int i = 1; i <= to; ++i) {
+  for (int i = 0; i < amount; ++i) {
     std::this_thread::sleep_for(std::chrono::milliseconds(50));
-    std::cout << " " << i << std::flush;
+    --value_;
+    std::cout << " " << value_ << std::flush;
   }
-  std::cout << reset << "\n";
-}
+  std::cout << Color::None << "\n";
 
-void Counter::downfrom(int from, Color color) {
-  std::cout << color << "Counting ...";
-  for (int i = from; i >= 1; --i) {
-    std::this_thread::sleep_for(std::chrono::milliseconds(50));
-    std::cout << " " << i << std::flush;
-  }
-  std::cout << reset << "\n";
+  return value_;
 }

@@ -18,6 +18,7 @@ target_sources(example
     PRIVATE
         example/main.cc
         example/counter.cc
+        example/ascii.cc
 )
 target_link_libraries(example PRIVATE active-object)
 

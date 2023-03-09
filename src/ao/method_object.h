@@ -29,7 +29,7 @@ private:
   std::function<T()> call_;
 };
 
-template <> void MethodObject<void>::call() {
+template <> inline void MethodObject<void>::call() {
   call_();
   promise_.set_value();
 }

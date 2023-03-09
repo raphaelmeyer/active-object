@@ -27,7 +27,8 @@ void plain() {
   worker1.join();
   worker2.join();
 
-  std::cout << "Final: " << counter.value() << "\n";
+  std::cout << "\n"
+            << "Final: " << counter.value() << "\n";
 }
 
 void active_object() {
@@ -54,12 +55,23 @@ void active_object() {
 
   auto final = counter.value().get();
 
-  std::cout << "Final: " << final << "\n";
+  std::cout << "\n"
+            << "Final: " << final << "\n";
 
   scheduler->stop();
 }
 
 int main() {
+  std::cout << Color::Blue << "=== Plain ==="
+            << "\n\n";
+
   plain();
+
+  std::cout << "\n"
+            << Color::Blue << "=== Active Object ==="
+            << "\n\n";
+
   active_object();
+
+  std::cout << "\n";
 }

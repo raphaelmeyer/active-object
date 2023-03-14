@@ -7,12 +7,12 @@
 
 std::future<void> AoCounter::up(int amount, Color color) {
   return MethodObject<void>::enqueue(scheduler_,
-                                     [=] { return up_impl(amount, color); });
+                                     [=] { up_impl(amount, color); });
 }
 
 std::future<void> AoCounter::down(int amount, Color color) {
   return MethodObject<void>::enqueue(scheduler_,
-                                     [=] { return down_impl(amount, color); });
+                                     [=] { down_impl(amount, color); });
 }
 
 std::future<int> AoCounter::value() const {

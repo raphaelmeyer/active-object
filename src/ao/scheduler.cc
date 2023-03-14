@@ -6,9 +6,8 @@
 Scheduler::~Scheduler() { stop(); }
 
 void Scheduler::enqueue(std::unique_ptr<Method> &&method) {
-  std::unique_lock<std::mutex> lock(mutex_);
+  std::unique_lock<std::mutex> lock{mutex_};
   queue_.push_front(std::move(method));
-  lock.unlock();
   cv_.notify_one();
 }
 
@@ -39,9 +38,6 @@ std::unique_ptr<Method> Scheduler::dequeue() {
 
   auto method = std::move(queue_.back());
   queue_.pop_back();
-
-  lock.unlock();
-  cv_.notify_one();
 
   return method;
 }
